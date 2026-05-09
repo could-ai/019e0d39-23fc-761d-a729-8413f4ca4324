@@ -1,67 +1,239 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MorphologyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MorphologyApp extends StatelessWidget {
+  const MorphologyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
+      title: 'Andrographis paniculata Morphology',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => const MorphologyScreen(),
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class MorphologyScreen extends StatelessWidget {
+  const MorphologyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar.large(
+            title: const Text(
+              'Andrographis paniculata',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+            floating: true,
+            pinned: true,
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16.0),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                _buildIntroSection(),
+                const SizedBox(height: 24),
+                const Text(
+                  'Botanical Morphology',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    int crossAxisCount = constraints.maxWidth > 800 ? 2 : 1;
+                    return GridView.count(
+                      crossAxisCount: crossAxisCount,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: constraints.maxWidth > 800 ? 2.5 : 1.8,
+                      children: const [
+                        MorphologyCard(
+                          title: 'Plant Habit',
+                          icon: Icons.grass,
+                          description:
+                              'An erect, annual, branched herb typically growing 30 to 110 cm in height. It has a taproot system.',
+                        ),
+                        MorphologyCard(
+                          title: 'Stem',
+                          icon: Icons.line_weight,
+                          description:
+                              'Dark green, sharply quadrangular (four-sided) with longitudinal furrows and wings along the angles. The stem is extensively branched.',
+                        ),
+                        MorphologyCard(
+                          title: 'Leaves',
+                          icon: Icons.eco,
+                          description:
+                              'Simple, opposite-decussate, lanceolate, glabrous, 2–8 cm long, and 1–2.5 cm wide. Apex is acute to acuminate with an entire margin.',
+                        ),
+                        MorphologyCard(
+                          title: 'Inflorescence & Flowers',
+                          icon: Icons.local_florist,
+                          description:
+                              'Flowers are small, solitary, arranged in lax spreading axillary and terminal racemes or panicles. The corolla is bilabiate, white with rose-purple spots on the lower lip.',
+                        ),
+                        MorphologyCard(
+                          title: 'Fruits (Capsules)',
+                          icon: Icons.spa,
+                          description:
+                              'The fruit is an erect, linear-oblong capsule, approximately 1.5–2 cm long and 3–4 mm wide, compressed, and acutely pointed at both ends.',
+                        ),
+                        MorphologyCard(
+                          title: 'Seeds',
+                          icon: Icons.grain,
+                          description:
+                              'Seeds are numerous, very small, sub-quadrate, yellowish-brown, and rugose (deeply wrinkled/pitted), lacking endosperm.',
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(height: 32),
+                const Divider(),
+                const SizedBox(height: 16),
+                const Text(
+                  'References',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                _buildReferenceItem(
+                  '1. World Health Organization (WHO)',
+                  'WHO Monographs on Selected Medicinal Plants - Volume 2. "Herba Andrographidis". Geneva: WHO, 2002.',
+                ),
+                _buildReferenceItem(
+                  '2. Sharma, A., et al.',
+                  'Botanical and phytopharmacological notes on Andrographis paniculata (Nees). Journal of Pharmacognosy and Phytochemistry, 2014.',
+                ),
+                _buildReferenceItem(
+                  '3. Indian Pharmacopoeia',
+                  'Ministry of Health and Family Welfare, Government of India. Monographs on Indian Medicinal Plants.',
+                ),
+                const SizedBox(height: 48),
+              ]),
+            ),
+          ),
+        ],
       ),
-      body: Center(
+    );
+  }
+
+  Widget _buildIntroSection() {
+    return const Card(
+      elevation: 0,
+      color: Color(0xFFE8F5E9),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Overview',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Andrographis paniculata (commonly known as "King of Bitters" or "Kalmegh") is an herbaceous plant in the family Acanthaceae. It is native to India and Sri Lanka and is widely cultivated in Southern and Southeastern Asia for its renowned medicinal properties.',
+              style: TextStyle(fontSize: 16, height: 1.5),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
+    );
+  }
+
+  Widget _buildReferenceItem(String title, String description) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.bookmark, size: 20, color: Colors.grey),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  description,
+                  style: const TextStyle(fontSize: 14, color: Colors.black87, height: 1.4),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MorphologyCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final String description;
+
+  const MorphologyCard({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: Colors.green[700], size: 28),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Text(
+                  description,
+                  style: const TextStyle(fontSize: 15, height: 1.4, color: Colors.black87),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
