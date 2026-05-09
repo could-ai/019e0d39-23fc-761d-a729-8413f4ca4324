@@ -106,6 +106,13 @@ class MorphologyScreen extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 32),
+                const Text(
+                  'Antimicrobial Properties',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                _buildAntimicrobialSection(),
+                const SizedBox(height: 32),
                 const Divider(),
                 const SizedBox(height: 16),
                 const Text(
@@ -125,11 +132,46 @@ class MorphologyScreen extends StatelessWidget {
                   '3. Indian Pharmacopoeia',
                   'Ministry of Health and Family Welfare, Government of India. Monographs on Indian Medicinal Plants.',
                 ),
+                _buildReferenceItem(
+                  '4. Mishra, U. S., et al.',
+                  'Antibacterial and antifungal activity of Andrographis paniculata (Nees) in vitro. Journal of Pharmacognosy and Phytotherapy, 2013.',
+                ),
                 const SizedBox(height: 48),
               ]),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAntimicrobialSection() {
+    return const Card(
+      elevation: 2,
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.health_and_safety, color: Colors.blue, size: 28),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    'Antimicrobial Activity',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 12),
+            Text(
+              'Andrographis paniculata exhibits significant antimicrobial activity due to its active phytochemicals, predominantly andrographolide and its derivatives. Extracts from the leaves and aerial parts have shown broad-spectrum antibacterial efficacy against both Gram-positive (e.g., Staphylococcus aureus) and Gram-negative bacteria (e.g., Escherichia coli, Pseudomonas aeruginosa). Furthermore, the plant possesses notable antifungal and antiviral properties, making it a valuable subject for pharmacological research in treating infectious diseases.',
+              style: TextStyle(fontSize: 15, height: 1.5, color: Colors.black87),
+            ),
+          ],
+        ),
       ),
     );
   }

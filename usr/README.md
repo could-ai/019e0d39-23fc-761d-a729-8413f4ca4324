@@ -5,6 +5,7 @@ A beautifully designed, cross-platform Flutter application providing detailed bo
 ## Features
 
 *   **Morphological Details:** Comprehensive descriptions of the plant's habit, stem, leaves, inflorescence & flowers, fruits, and seeds.
+*   **Pharmacological Activity:** Highlights the antimicrobial properties based on scientific research.
 *   **Scientific References:** Credible citations including WHO monographs and pharmacognosy journals.
 *   **Responsive Design:** Adapts seamlessly to mobile, tablet, desktop, and web screen sizes.
 *   **Clean UI:** Simple, accessible cards and list structures using Material 3 guidelines.
